@@ -1,22 +1,22 @@
 #######################
-# Import libraries
+# --- IMPORTAMOS LAS LIBRERÍAS NECESARIAS ---
 import streamlit as st
 import pandas as pd
-import altair as alt
+import altair as alt #Altair y plotly para la visualización de datos
 import plotly.express as px
 
 #######################
-# Page configuration
+# --- CONFIGURACIÓN DE LA PÁGINA ---
 st.set_page_config(
-    page_title="US Population Dashboard",
-    page_icon="🏂",
+    page_title=" Dashboard Población U.S.A ",
+    page_icon="🇺🇸",
     layout="wide",
     initial_sidebar_state="expanded")
 
-alt.themes.enable("dark")
+alt.themes.enable("gray") #Tema de los cuadros
 
 #######################
-# CSS styling
+# CSS estilo de diseño
 st.markdown("""
 <style>
 
@@ -66,23 +66,24 @@ st.markdown("""
 
 
 #######################
-# Load data
+# --- CARGAMOS LOS DATOS ---
 df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
+#Se manda a llamar el archivo final, ordenado, de la carpeta 'data'
 
 
 #######################
-# Sidebar
+# --- CONFIGURAMOS LA BARRA LATERAL ---
 with st.sidebar:
-    st.title('🏂 US Population Dashboard')
+    st.title('🇺🇸 Dashboard de la población de EE.UU.')
     
     year_list = list(df_reshaped.year.unique())[::-1]
     
-    selected_year = st.selectbox('Select a year', year_list)
+    selected_year = st.selectbox('Selecciona un año', year_list)
     df_selected_year = df_reshaped[df_reshaped.year == selected_year]
     df_selected_year_sorted = df_selected_year.sort_values(by="population", ascending=False)
 
     color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
-    selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
+    selected_color_theme = st.selectbox('Tu tema de colores favorito', color_theme_list)
 
 
 #######################

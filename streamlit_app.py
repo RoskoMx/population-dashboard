@@ -13,7 +13,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded")
 
-alt.themes.enable("gray") #Tema de los cuadros
+alt.themes.enable("dark") #Tema de los cuadros
 
 #######################
 # CSS estilo de diseño

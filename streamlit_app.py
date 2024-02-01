@@ -74,7 +74,7 @@ df_reshaped = pd.read_csv('data/us-population-2010-2019-reshaped.csv')
 #######################
 # --- CONFIGURAMOS LA BARRA LATERAL ---
 with st.sidebar:
-    st.title('🇺🇸 Dashboard de la población de EE.UU.')
+    st.title('Dashboard de la población de 🇺🇸')
     
     year_list = list(df_reshaped.year.unique())[::-1]
     
@@ -89,11 +89,11 @@ with st.sidebar:
 #######################
 # Plots
 
-# Heatmap
+# --- MAPA DE CALOR ---
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     heatmap = alt.Chart(input_df).mark_rect().encode(
-            y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Year", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
-            x=alt.X(f'{input_x}:O', axis=alt.Axis(title="", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+            y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Año", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
+            x=alt.X(f'{input_x}:O', axis=alt.Axis(title="Estados", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
             color=alt.Color(f'max({input_color}):Q',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
@@ -214,7 +214,7 @@ with col[0]:
     st.metric(label=last_state_name, value=last_state_population, delta=last_state_delta)
 
     
-    st.markdown('#### States Migration')
+    st.markdown('#### Estados de Migración')
 
     if selected_year > 2010:
         # Filter states with population difference > 50000
